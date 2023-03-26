@@ -19,5 +19,6 @@ namespace ConsoleBlackJack
         public string Name { get; set; }
         public CardSet Hand { get; set; }
         public int WinPoints{ get; set; }
+        public bool InGame { get; set; }
     }
 }
