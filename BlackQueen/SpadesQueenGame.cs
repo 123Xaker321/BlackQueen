@@ -65,14 +65,30 @@ namespace SpadesQueen
             ThrowPairs(Taker);
             Taker = Donor;
             Donor = NextPlayer(Donor);
-            CheckWinner();
+            CheckLoser();
             ShowState();
             
         }
 
-        private void CheckWinner()
+        private void CheckLoser()
         {
-            //Якщо 1 гравець у грі, він програв
+            int inGameCount = 0;
+            Player loser = null;
+
+            
+            for (int i = 0; i < Players.Count; i++)
+            {
+                if (Players[i].InGame)
+                {
+                    inGameCount++;
+                    loser = Players[i];
+                }
+                
+            }
+            if (inGameCount != 1)
+            {
+                loser = null;
+            }
         }
 
         private Player NextPlayer(Player player)
@@ -87,9 +103,15 @@ namespace SpadesQueen
         public void Start()
         {
             //Зробити дію в циклах
-            //Deck.Remove(Deck.FirstOrDefault(CardSuit.Diamond, CardRank.Queen));
-            Player.Hand.Add(Deck.Deal((Deck.Count - 1) / Players.Count));
-            ThrowPairs(Player);
+            
+            
+           
+            foreach(Player player in Players)
+            {
+                player.Hand.Add(Deck.Deal((Deck.Count - 1) / Players.Count));
+                ThrowPairs(player);
+            }
+            
             ShowState();
         }
         public void Turn(Card card)
