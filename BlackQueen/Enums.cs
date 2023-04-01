@@ -4,7 +4,7 @@ namespace CardLib
 {
 	public enum CardRank
 	{
-		Two,
+		Two = 2,
 		Three,
 		Four,
 		Five,

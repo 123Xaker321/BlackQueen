@@ -1,6 +1,8 @@
 ﻿using CardLib;
+using ConsoleBlackJack;
 using GraphicsInfrastructure;
 using SpadesQueen;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -11,25 +13,40 @@ namespace TurnTest
     {
         SpadesQueenGame game;
         GraphicsStore store;
-        GraphicsCardSet table;
         List<GraphicsCardSet> sets = new List<GraphicsCardSet>();
         Card activeCard;
         public Form1()
         {
             InitializeComponent();
-            
-            game = new SpadesQueenGame(ShowState);
+            var players = InitializePlayers();
+            game = new SpadesQueenGame(players, ShowState);
             store = new GraphicsStore(game.Deck, this);
-            sets.Add(new GraphicsCardSet(game.Deck,
-                new Rectangle(pDeck.Location, pDeck.Size), store));
-            sets.Add(new GraphicsCardSet(game.Player.Hand,
+
+
+            sets.Add(new GraphicsCardSet(players[0].Hand,
                 new Rectangle(pPlayer.Location, pPlayer.Size), store));
-            table = new GraphicsCardSet(game.Table,
-                new Rectangle(pTable.Location, pTable.Size), store);
-            sets.Add(table);
+            sets.Add(new GraphicsCardSet(players[1].Hand,
+    new Rectangle(panel1.Location, panel1.Size), store));
+            sets.Add(new GraphicsCardSet(players[2].Hand,
+    new Rectangle(panel2.Location, panel2.Size), store));
+
+
             BindEvents();
             game.Start();
             Update();
+        }
+
+        private List<Player> InitializePlayers()
+        {
+            //
+            var players = new List<Player>()
+            {
+                new Player("Bob"),
+                new Player("Steve"),
+                new Player("Jack"),
+            };
+
+            return players;
         }
 
         private void BindEvents()
@@ -48,9 +65,13 @@ namespace TurnTest
             if (activeCard == null) return;
             if (e.Button != MouseButtons.Left) return;
             Rectangle r1 = new Rectangle(pActive.Location, pActive.Size);
-            Rectangle r2 = table.Frame;
-            if (r1.IntersectsWith(r2))
-                game.Turn(activeCard);
+            foreach (var set in sets)
+            {
+                Rectangle r2 = set.Frame;
+                if (r1.IntersectsWith(r2))
+                    game.Turn(activeCard);
+            }
+
             activeCard = null;
             pActive.Hide();
         }

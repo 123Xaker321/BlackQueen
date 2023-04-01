@@ -21,7 +21,7 @@ namespace SpadesQueen
         }
         public Action ShowState { get; set; }
         public CardSet Deck { get; set; }
-        public Player Player { get; set; }
+        //public Player Player { get; set; }
         public CardSet Table { get; set; }
         
 
@@ -44,18 +44,23 @@ namespace SpadesQueen
             {
                 if (player.Hand[i].Equals(SpadesQueen)) continue;
                 bool IsPair = false;
-                for (int j = player.Hand.Count - 1; j >= 0; j--)
+                int j;
+                for (j = i - 1; j >= 0; j--)
                 {
                     if (i == j) continue;
                     if (player.Hand[j].Equals(SpadesQueen)) continue;
                     if(player.Hand[j].Rank == player.Hand[i].Rank)
                     {
-                        IsPair = true;
-                        player.Hand.Remove(j);
+                        IsPair = true;                        
                         break;
                     }
                 }
-                if (IsPair) player.Hand.Remove(i);
+                if (IsPair)
+                {
+                    player.Hand.Remove(i);
+                    player.Hand.Remove(j);
+                    i--;
+                }
             }
             player.InGame = player.Hand.Count > 0;
             
@@ -103,7 +108,7 @@ namespace SpadesQueen
         public void Start()
         {
             //Зробити дію в циклах
-            
+            Deck.Shuffle();
             
            
             foreach(Player player in Players)
