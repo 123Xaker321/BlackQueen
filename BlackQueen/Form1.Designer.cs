@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pPlayer = new System.Windows.Forms.Panel();
+            this.pPlayer1 = new System.Windows.Forms.Panel();
             this.pActive = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pPlayer3 = new System.Windows.Forms.Panel();
+            this.pPlayer2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pActive)).BeginInit();
             this.SuspendLayout();
             // 
-            // pPlayer
+            // pPlayer1
             // 
-            this.pPlayer.Location = new System.Drawing.Point(61, 287);
-            this.pPlayer.Name = "pPlayer";
-            this.pPlayer.Size = new System.Drawing.Size(466, 138);
-            this.pPlayer.TabIndex = 0;
+            this.pPlayer1.Location = new System.Drawing.Point(36, 300);
+            this.pPlayer1.Name = "pPlayer1";
+            this.pPlayer1.Size = new System.Drawing.Size(466, 138);
+            this.pPlayer1.TabIndex = 0;
+            this.pPlayer1.Paint += new System.Windows.Forms.PaintEventHandler(this.pPlayer_Paint);
             // 
             // pActive
             // 
@@ -51,29 +52,30 @@
             this.pActive.TabIndex = 3;
             this.pActive.TabStop = false;
             // 
-            // panel1
+            // pPlayer3
             // 
-            this.panel1.Location = new System.Drawing.Point(36, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(466, 138);
-            this.panel1.TabIndex = 4;
+            this.pPlayer3.Location = new System.Drawing.Point(36, 12);
+            this.pPlayer3.Name = "pPlayer3";
+            this.pPlayer3.Size = new System.Drawing.Size(466, 138);
+            this.pPlayer3.TabIndex = 4;
+            this.pPlayer3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // panel2
+            // pPlayer2
             // 
-            this.panel2.Location = new System.Drawing.Point(281, 180);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(466, 138);
-            this.panel2.TabIndex = 1;
+            this.pPlayer2.Location = new System.Drawing.Point(36, 156);
+            this.pPlayer2.Name = "pPlayer2";
+            this.pPlayer2.Size = new System.Drawing.Size(466, 138);
+            this.pPlayer2.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pPlayer2);
+            this.Controls.Add(this.pPlayer3);
             this.Controls.Add(this.pActive);
-            this.Controls.Add(this.pPlayer);
+            this.Controls.Add(this.pPlayer1);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pActive)).EndInit();
@@ -83,10 +85,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel pPlayer;
+        private System.Windows.Forms.Panel pPlayer1;
         private System.Windows.Forms.PictureBox pActive;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pPlayer3;
+        private System.Windows.Forms.Panel pPlayer2;
     }
 }
 

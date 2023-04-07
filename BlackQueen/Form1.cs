@@ -11,6 +11,7 @@ namespace TurnTest
 {
     public partial class Form1 : Form
     {
+        List<Panel> Panels = new List<Panel>();
         SpadesQueenGame game;
         GraphicsStore store;
         List<GraphicsCardSet> sets = new List<GraphicsCardSet>();
@@ -18,17 +19,20 @@ namespace TurnTest
         public Form1()
         {
             InitializeComponent();
+            Panels.Add(pPlayer1);
+            Panels.Add(pPlayer2);
+            Panels.Add(pPlayer3);
             var players = InitializePlayers();
             game = new SpadesQueenGame(players, ShowState);
             store = new GraphicsStore(game.Deck, this);
 
-
-            sets.Add(new GraphicsCardSet(players[0].Hand,
-                new Rectangle(pPlayer.Location, pPlayer.Size), store));
-            sets.Add(new GraphicsCardSet(players[1].Hand,
-    new Rectangle(panel1.Location, panel1.Size), store));
-            sets.Add(new GraphicsCardSet(players[2].Hand,
-    new Rectangle(panel2.Location, panel2.Size), store));
+            for (int i = 0; i < players.Count; i++)
+            {
+                
+                sets.Add(new GraphicsCardSet(players[i].Hand,
+                new Rectangle(Panels[i].Location, Panels[i].Size), store));
+            }
+            
 
 
             BindEvents();
@@ -103,6 +107,16 @@ namespace TurnTest
             {
                 set.Draw(game.Deck != set.CardSet);
             }
+        }
+
+        private void pPlayer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

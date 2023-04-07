@@ -35,6 +35,10 @@ namespace SpadesQueen
         {
             Donor.Hand.Remove(card);
             Taker.Hand.Add(card);
+            if(!Taker.Hand.Contains(card))
+            {
+                throw new Exception("В руці гравця повинна залишитися карта");  
+            }
         }
         public void ThrowPairs(Player player) 
         {
