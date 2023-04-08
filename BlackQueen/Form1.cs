@@ -105,7 +105,7 @@ namespace TurnTest
         {
             foreach (var set in sets)
             {
-                set.Draw(game.Deck != set.CardSet);
+                set.Draw(true /*game.Taker.Hand == set.CardSet*/);
             }
         }
 

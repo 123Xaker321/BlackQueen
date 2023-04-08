@@ -27,8 +27,8 @@ namespace SpadesQueen
 
         //properties
         public List<Player> Players = new List<Player>();
-        public Player Taker = new Player();
-        public Player Donor = new Player();
+        public Player Taker;
+        public Player Donor;
         
         //methods
         public void TakeCard(Card card)
@@ -120,6 +120,8 @@ namespace SpadesQueen
                 player.Hand.Add(Deck.Deal((Deck.Count - 1) / Players.Count));
                 ThrowPairs(player);
             }
+            Taker = Players[0];
+            Donor = NextPlayer(Taker);
             
             ShowState();
         }
