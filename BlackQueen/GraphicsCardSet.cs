@@ -10,6 +10,7 @@ namespace GraphicsInfrastructure
 {
     public class GraphicsCardSet
     {
+        
         public CardSet CardSet { get; }
         public Rectangle Frame { get; set; }
 

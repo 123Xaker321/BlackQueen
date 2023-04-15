@@ -15,14 +15,14 @@ namespace SpadesQueen
         {
             Deck = new CardSet();
             Deck.Full();
-            Table = new CardSet();
+            Bin = new CardSet();
             ShowState = showState;
             Players = players;
         }
         public Action ShowState { get; set; }
         public CardSet Deck { get; set; }
         //public Player Player { get; set; }
-        public CardSet Table { get; set; }
+        public CardSet Bin { get; set; }
         
 
         //properties
@@ -42,8 +42,7 @@ namespace SpadesQueen
         }
         public void ThrowPairs(Player player) 
         {
-            //буде використовуватися тільки під час того, як Taker бере карту.
-            //після того як взяв, скидує пару.
+            
             for (int i = player.Hand.Count - 1; i >= 0; i--)
             {
                 if (player.Hand[i].Equals(SpadesQueen)) continue;
@@ -61,8 +60,8 @@ namespace SpadesQueen
                 }
                 if (IsPair)
                 {
-                    player.Hand.Remove(i);
-                    player.Hand.Remove(j);
+                    Bin.Add(player.Hand.Pull(i));
+                    Bin.Add(player.Hand.Pull(j));
                     i--;
                 }
             }
@@ -113,11 +112,13 @@ namespace SpadesQueen
         {
             //Зробити дію в циклах
             Deck.Shuffle();
-            
-           
-            foreach(Player player in Players)
+
+            int countofcards = (int)Math.Ceiling((double)Deck.Count / Players.Count);
+
+
+            foreach (Player player in Players)
             {
-                player.Hand.Add(Deck.Deal((Deck.Count - 1) / Players.Count));
+                player.Hand.Add(Deck.Deal(countofcards));
                 ThrowPairs(player);
             }
             Taker = Players[0];

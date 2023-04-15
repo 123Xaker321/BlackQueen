@@ -5,6 +5,7 @@ using SpadesQueen;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TurnTest
@@ -16,6 +17,9 @@ namespace TurnTest
         GraphicsStore store;
         List<GraphicsCardSet> sets = new List<GraphicsCardSet>();
         Card activeCard;
+        int gap = 10;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -30,8 +34,10 @@ namespace TurnTest
             {
                 
                 sets.Add(new GraphicsCardSet(players[i].Hand,
-                new Rectangle(Panels[i].Location, Panels[i].Size), store));
+                new Rectangle(new Point(Panels[i].Location.X + gap / 2, Panels[i].Location.Y + gap / 2), 
+                new Size(Panels[i].Width - gap, Panels[i].Height - gap)), store));
             }
+            sets.Add(new GraphicsCardSet(game.Bin, new Rectangle(0, 0, 10, 10), store));
             
 
 
@@ -105,8 +111,21 @@ namespace TurnTest
         {
             foreach (var set in sets)
             {
-                set.Draw(true /*game.Taker.Hand == set.CardSet*/);
+                set.Draw(game.Taker.Hand == set.CardSet);
+               
+             
+              
+                    MarkPlayer(set, game.Donor.Hand == set.CardSet);
+
             }
+        }
+
+        private void MarkPlayer(GraphicsCardSet set, bool active)
+        {
+            int index = sets.IndexOf(set);
+            if (index == -1 || index >= Panels.Count) return;
+            
+            Panels[index].BackColor = active ? Color.LightGreen : BackColor;
         }
 
         private void pPlayer_Paint(object sender, PaintEventArgs e)
