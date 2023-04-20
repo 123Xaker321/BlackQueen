@@ -71,10 +71,14 @@ namespace SpadesQueen
         public void NextTurn()
         {
             ThrowPairs(Taker);
-            Taker = Donor;
-            Donor = NextPlayer(Donor);
-            CheckLoser();
-            ShowState();
+            if (NextPlayer(Donor).InGame == false) return;
+            else
+            {
+                Taker = Donor;
+                Donor = NextPlayer(Donor);
+            }
+                CheckLoser();
+                ShowState();
             
         }
 
@@ -86,12 +90,15 @@ namespace SpadesQueen
             
             for (int i = 0; i < Players.Count; i++)
             {
-                if (Players[i].InGame)
+                if (Players[i].InGame == true)
                 {
-                    inGameCount++;
+                    inGameCount++; 
+                    
+                }
+                else
+                {
                     loser = Players[i];
                 }
-                
             }
             if (inGameCount != 1)
             {
