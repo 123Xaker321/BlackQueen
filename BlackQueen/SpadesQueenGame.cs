@@ -18,11 +18,13 @@ namespace SpadesQueen
             Bin = new CardSet();
             ShowState = showState;
             Players = players;
+
         }
         public Action ShowState { get; set; }
         public CardSet Deck { get; set; }
         //public Player Player { get; set; }
         public CardSet Bin { get; set; }
+        public Player Loser { get; private set; } = null;
         
 
         //properties
@@ -65,45 +67,31 @@ namespace SpadesQueen
                     i--;
                 }
             }
-            player.InGame = player.Hand.Count > 0;
+            
             
         }
         public void NextTurn()
         {
             ThrowPairs(Taker);
-            if (NextPlayer(Donor).InGame == false) return;
-            else
-            {
-                Taker = Donor;
-                Donor = NextPlayer(Donor);
-            }
-                CheckLoser();
+            CheckLoser();
+
+            Taker = Donor.InGame? Donor: NextPlayer(Donor);
+            Donor = NextPlayer(Donor);
+            
+                
                 ShowState();
             
         }
 
         private void CheckLoser()
         {
-            int inGameCount = 0;
-            Player loser = null;
-
             
-            for (int i = 0; i < Players.Count; i++)
-            {
-                if (Players[i].InGame == true)
-                {
-                    inGameCount++; 
-                    
-                }
-                else
-                {
-                    loser = Players[i];
-                }
-            }
-            if (inGameCount != 1)
-            {
-                loser = null;
-            }
+            
+
+
+            int playersInGame = Players.Count(player => player.InGame);
+            Loser = playersInGame > 1 ? null : Players.First(player => player.InGame);
+
         }
 
         private Player NextPlayer(Player player)
@@ -135,9 +123,14 @@ namespace SpadesQueen
         }
         public void Turn(Card card)
         {
+            Random rnd = new Random();
             if (!Donor.Hand.Contains(card)) return;
+            if (Loser != null) return;
+            
             TakeCard(card);
             NextTurn();
+            if (Taker != Players[0]) 
+                Turn(Donor.Hand[rnd.Next(Donor.Hand.Count)]);
         }
 
 

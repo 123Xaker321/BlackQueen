@@ -37,7 +37,7 @@
             // 
             // pPlayer1
             // 
-            this.pPlayer1.Location = new System.Drawing.Point(36, 300);
+            this.pPlayer1.Location = new System.Drawing.Point(310, 304);
             this.pPlayer1.Name = "pPlayer1";
             this.pPlayer1.Size = new System.Drawing.Size(466, 138);
             this.pPlayer1.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // pActive
             // 
-            this.pActive.Location = new System.Drawing.Point(684, 284);
+            this.pActive.Location = new System.Drawing.Point(904, 301);
             this.pActive.Name = "pActive";
             this.pActive.Size = new System.Drawing.Size(92, 141);
             this.pActive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -54,7 +54,7 @@
             // 
             // pPlayer3
             // 
-            this.pPlayer3.Location = new System.Drawing.Point(36, 12);
+            this.pPlayer3.Location = new System.Drawing.Point(530, 12);
             this.pPlayer3.Name = "pPlayer3";
             this.pPlayer3.Size = new System.Drawing.Size(466, 138);
             this.pPlayer3.TabIndex = 4;
@@ -62,7 +62,7 @@
             // 
             // pPlayer2
             // 
-            this.pPlayer2.Location = new System.Drawing.Point(36, 156);
+            this.pPlayer2.Location = new System.Drawing.Point(12, 12);
             this.pPlayer2.Name = "pPlayer2";
             this.pPlayer2.Size = new System.Drawing.Size(466, 138);
             this.pPlayer2.TabIndex = 1;
@@ -71,7 +71,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1008, 454);
             this.Controls.Add(this.pPlayer2);
             this.Controls.Add(this.pPlayer3);
             this.Controls.Add(this.pActive);

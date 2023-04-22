@@ -109,13 +109,20 @@ namespace TurnTest
 
         private void ShowState()
         {
+            
             foreach (var set in sets)
             {
+
                 set.Draw(game.Taker.Hand == set.CardSet);
-               
-             
-              
-                    MarkPlayer(set, game.Donor.Hand == set.CardSet);
+                
+
+
+                MarkPlayer(set, game.Donor.Hand == set.CardSet);
+
+            }
+            if (game.Loser != null)
+            {
+                MessageBox.Show($"Гравець {game.Loser.Name} програв");
 
             }
         }
