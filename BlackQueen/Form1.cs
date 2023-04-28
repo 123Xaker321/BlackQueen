@@ -23,6 +23,7 @@ namespace TurnTest
         public Form1()
         {
             InitializeComponent();
+            
             Panels.Add(pPlayer1);
             Panels.Add(pPlayer2);
             Panels.Add(pPlayer3);
@@ -125,6 +126,7 @@ namespace TurnTest
                 MessageBox.Show($"Гравець {game.Loser.Name} програв");
 
             }
+            
         }
 
         private void MarkPlayer(GraphicsCardSet set, bool active)
@@ -141,6 +143,11 @@ namespace TurnTest
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
