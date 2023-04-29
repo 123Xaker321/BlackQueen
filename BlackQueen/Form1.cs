@@ -104,7 +104,7 @@ namespace TurnTest
             activeCard = store.GetCard(pb);
             pActive.Location = new Point(Cursor.Position.X - this.Location.X - pActive.Width,
                 Cursor.Position.Y - this.Location.Y - pActive.Height);
-            pActive.Image = pb.Image;
+            pActive.Image = store.GetPictureBox(activeCard, true).Image;
             pActive.Show();
         }
 
